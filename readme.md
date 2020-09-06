@@ -7,22 +7,21 @@
 
 ## Wiring
 ### Node-MCU -  AJ-SR04M  -   LED
-D1      -   Trig
-D2      -   Echo
-D3      -    -    - LED(+ve)
-5V/VU   -   5V
-GND     -   GND   - GND
+*   D1      -   Trig
+*   D2      -   Echo
+*   D3      -    -    - LED(+ve)
+*   5V/VU   -   5V
+*   GND     -   GND   - GND
 
 ## NODE-RED
-MQTT in[/ha/spub]   -to-    Exit Text Node //To get RAW Distance Data
-Input Text          -to-    MQTT out[/ha/sred]  //Input int Value to Set Distance
-MQTT in[/ha/sred]   -to-    Exit Text Node  //MQTT Out Data
-MQTT in[/ha/limit]   -to-    Exit Text Node //Defined Limit Distace
+*   MQTT in[/ha/spub]   -to-    Exit Text Node //To get RAW Distance Data
+*   Input Text          -to-    MQTT out[/ha/sred]  //Input int Value to Set Distance
+*   MQTT in[/ha/sred]   -to-    Exit Text Node  //MQTT Out Data
+*   MQTT in[/ha/limit]   -to-    Exit Text Node //Defined Limit Distace
 
 ## Versions and files
 ### Using Arduino and Node-mcu
-Ultrasonic_ESP
-Ultrasonic_UNO
+Ultrasonic_ESP & Ultrasonic_UNO
 
 ### Using Only Node-mcu
 UltraSonic_OnlyESP
