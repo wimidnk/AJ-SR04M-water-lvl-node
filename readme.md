@@ -1,4 +1,4 @@
-### Making a water level indicator with single LED using AJ-SR04M Ultrasonic Sensor
+# Making a water level indicator with single LED using AJ-SR04M Ultrasonic Sensor
 
 ## Requirments
 *   Ultrasonic Sensor AJ-SR04M
@@ -6,7 +6,7 @@
 *   Node-Red to Easily create Mqtt Pub/Sub Client
 
 ## Wiring
-# Node-MCU -  AJ-SR04M  -   LED
+### Node-MCU -  AJ-SR04M  -   LED
 D1      -   Trig
 D2      -   Echo
 D3      -    -    - LED(+ve)
@@ -20,20 +20,20 @@ MQTT in[/ha/sred]   -to-    Exit Text Node  //MQTT Out Data
 MQTT in[/ha/limit]   -to-    Exit Text Node //Defined Limit Distace
 
 ## Versions and files
-# Using Arduino and Node-mcu
+### Using Arduino and Node-mcu
 Ultrasonic_ESP
 Ultrasonic_UNO
 
-# Using Only Node-mcu
+### Using Only Node-mcu
 UltraSonic_OnlyESP
 
-# Using Only Node-MCU with EEPROM Limit Saving
+### Using Only Node-MCU with EEPROM Limit Saving
 UltraSonic_OnlyESP_EEPROM
 
-# Picture of Node-Red
+### Picture of Node-Red
 NODE-MAIN
 NODE-UI
 
-# Picture of Project
+### Picture of Project
 MAIN
 EXTRAS-*
