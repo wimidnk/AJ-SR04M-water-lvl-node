@@ -6,9 +6,9 @@
 
 // Update these with values suitable for your network.
 const char* set_hostname = "WATER-lvl-node";
-const char* ssid = "AXIOM-Ground-Floor";
-const char* password = "bismillah";
-const char* mqtt_server = "192.168.100.101";
+const char* ssid = "********";
+const char* password = "*********";
+const char* mqtt_server = "********";
 char Str1[15];
 //void callback(char* topic, byte* payload, unsigned int length);
 
