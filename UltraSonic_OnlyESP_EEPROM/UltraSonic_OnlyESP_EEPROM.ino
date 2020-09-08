@@ -90,7 +90,7 @@ void loop()
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 1000) {
+  if (now - lastMsg > 5000) {
     lastMsg = now;
     if (valnew > 15){
       if (valnew == val){}
@@ -114,9 +114,11 @@ void loop()
     if(distance < val) {
     digitalWrite(limitLed, HIGH);
     delay(500);
+    client.publish("/ha/switch", "1");
     }
     else {
       digitalWrite(limitLed, LOW);
+      client.publish("/ha/switch", "0");
     }
     delay(1);
 
