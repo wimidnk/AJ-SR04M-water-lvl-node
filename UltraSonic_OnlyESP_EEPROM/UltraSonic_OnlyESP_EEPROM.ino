@@ -14,13 +14,14 @@ long lastMsg = 0;
 char msg[20];
 char Limit[20];
 int val;
+int valnew;
 int eeAddress = 0; 
 
 // Update these with values suitable for your network.
-const char* set_hostname = "WATER-lvl-node";
-const char* ssid = "********";
-const char* password = "********";
-const char* mqtt_server = "********";
+const char* set_hostname = "WATER-lvl";
+const char* ssid = "AXIOM-Ground-Floor";
+const char* password = "bismillah";
+const char* mqtt_server = "192.168.100.101";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -49,7 +50,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("node-tank-lvl")) {
+    if (client.connect("node-lvl")) {
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
@@ -91,8 +92,14 @@ void loop()
   long now = millis();
   if (now - lastMsg > 1000) {
     lastMsg = now;
+    if (valnew > 15){
+      if (valnew == val){}
+      else
+      {
+        val = valnew;
+      }
+    }
     client.subscribe("/ha/sred");
-
     digitalWrite(trigPin, LOW);
     delayMicroseconds(5);
     digitalWrite(trigPin, HIGH);
@@ -130,15 +137,34 @@ void callback(char *topic, byte *payload, unsigned int length)
   }
   buff_p[length] = '\0';
   String msg_p = String(buff_p);
-  val = msg_p.toInt(); // to Int
-  Serial.print(val);
-  Serial.println("Value");
+  valnew = msg_p.toInt(); // to Int
+//  Serial.print(valnew);
+  Serial.println(" Value Received");
+  client.publish("/ha/Status", "Value Received");
 
-  int eeAddress = 0;
-  EEPROM.put(eeAddress, val);
-  eeAddress += sizeof(int);
-  EEPROM.put(eeAddress, val);
-  EEPROM.commit();
-  Serial.println("Written");
+  if (valnew > 15)
+  {
+    if (valnew == val)
+    {
+      Serial.println("Already Written this value");
+      client.publish("/ha/Status", "Already Written");
+    }
+    else 
+    {
+      int eeAddress = 0;
+      EEPROM.put(eeAddress, valnew);
+      eeAddress += sizeof(int);
+      EEPROM.put(eeAddress, valnew);
+      EEPROM.commit();
+      Serial.println("Written");
+      client.publish("/ha/Status", "New Value Written in EEPROM");
+    }
+  }
+  else
+  {
+    Serial.println("Enter Value > 15");
+    client.publish("/ha/Status", "Enter Value > 15");
+    delay(500);
+  }
   
 }
